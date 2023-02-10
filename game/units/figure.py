@@ -26,6 +26,9 @@ class Figure(object):
         self.x = x
         self.y = y
 
+    def player_check(self, team: int):
+        return self.team == team
+
     def __repr__(self):
         return f"{self.__module__}({self.x}, {self.y}, {self.team}, {self.rang})"
 

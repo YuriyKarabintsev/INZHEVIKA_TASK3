@@ -1,4 +1,7 @@
-from game.units.figure import Figure
+try:
+    from game.units.figure import Figure
+except ModuleNotFoundError:
+    from units.figure import Figure
 
 
 class GameChip(Figure):
