@@ -39,9 +39,9 @@ class Desk(object):
             desk.append(desk_line)
 
         desk[0][0] = GameChip(0, 0, 1)
-        desk[0][-1] = GameChip(0, 0, 2)
-        desk[-1][0] = GameChip(0, 0, 3)
-        desk[-1][-1] = GameChip(0, 0, 4)
+        desk[0][-1] = GameChip(0, 7, 2)
+        desk[-1][0] = GameChip(7, 0, 3)
+        desk[-1][-1] = GameChip(7, 7, 4)
 
         logging.info("Board cleared")
 
@@ -60,17 +60,17 @@ class Desk(object):
 
 
 if __name__ == "__main__":
-    FORMAT = '[%(asctime)s] [%(levelname)s]: %(process)d %(name)s %(message)s'
-    DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
-    LOG_PATH = "logs.log"
+    _FORMAT = '[%(asctime)s] [%(levelname)s]: %(process)d %(name)s %(message)s'
+    _DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
+    _LOG_PATH = "logs.log"
 
     logging.basicConfig(
-        format=FORMAT,
-        datefmt=DATE_FORMAT,
+        format=_FORMAT,
+        datefmt=_DATE_FORMAT,
         level=logging.INFO
     )
-    handler = logging.FileHandler("../" + LOG_PATH, mode='+a')
-    handler.setFormatter(logging.Formatter(FORMAT))
+    handler = logging.FileHandler("../" + _LOG_PATH, mode='+a')
+    handler.setFormatter(logging.Formatter(_FORMAT))
 
     logging.getLogger().addHandler(handler)
 
