@@ -5,6 +5,6 @@ except ModuleNotFoundError:
 
 
 class Empty(Figure):
-    def __init__(self, x, y):
-        super().__init__(x, y)
+    def __init__(self):
+        super().__init__()
 
