@@ -155,46 +155,47 @@ class Desk(object):
 
 
 if __name__ == "__main__":
-    _FORMAT = '[%(asctime)s] [%(levelname)s]: %(process)d %(name)s %(message)s'
-    _DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
-    _LOG_PATH = "logs.log"
+    FORMAT = '[%(asctime)s] [%(levelname)s]: %(process)d %(name)s %(message)s'
+    DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
+    LOG_PATH = "logs.log"
 
     logging.basicConfig(
-        format=_FORMAT,
-        datefmt=_DATE_FORMAT,
+        format=FORMAT,
+        datefmt=DATE_FORMAT,
         level=logging.INFO
     )
-    handler = logging.FileHandler("../" + _LOG_PATH, mode='+a')
-    handler.setFormatter(logging.Formatter(_FORMAT))
+    handler = logging.FileHandler("../" + LOG_PATH, mode='+a')
+    handler.setFormatter(logging.Formatter(FORMAT))
 
     logging.getLogger().addHandler(handler)
 
-    _desk = Desk()
+    desk = Desk()
 
-    _number_of_the_player = 1
-    _distance = random.randint(1, 6)
+    number_of_the_player = 1
+    distance = random.randint(1, 6)
 
     while True:
         os.system("clear")
-        _desk.show()
-        _input = input(f"input ({_distance}, {_number_of_the_player}): ")
-        if _input == "exit":
+        desk.show()
+        input_position = input(f"input ({distance}, {number_of_the_player}): ")
+        if input == "exit":
             logging.info("Exit")
             break
-        _pos_from, _pos_to = _input.split()
-        _pos_from = _desk.refactor_position(_pos_from)
-        _pos_to = _desk.refactor_position(_pos_to)
-        print(repr(_desk.get_figure((_pos_from[1], _pos_from[0]))))
-        print(repr(_desk.get_figure((_pos_to[1], _pos_to[0]))))
-        if _desk.check_self_figure(_pos_from, _number_of_the_player):
-            if _desk.reverse_position(_pos_to) in _desk.get_all_possible_moves(_pos_from[1], _pos_from[0], _distance):
-                _desk.do_move(_pos_from, _pos_to)
-                if _number_of_the_player + 1 == 5:
-                    _number_of_the_player = 1
+        pos_from, pos_to = input_position.split()
+        pos_from = desk.refactor_position(pos_from)
+        pos_to = desk.refactor_position(pos_to)
+        print(repr(desk.get_figure((pos_from[1], pos_from[0]))))
+        print(repr(desk.get_figure((pos_to[1], pos_to[0]))))
+        if desk.check_self_figure(pos_from, number_of_the_player):
+            if desk.reverse_position(pos_to) in desk.get_all_possible_moves(
+                    pos_from[1], pos_from[0], distance
+            ):
+                desk.do_move(pos_from, pos_to)
+                if number_of_the_player + 1 == 5:
+                    number_of_the_player = 1
                 else:
-                    # _number_of_the_player += 1
-                    pass
-                _distance = random.randint(1, 6)
+                    number_of_the_player += 1
+                distance = random.randint(1, 6)
             else:
                 logging.error("BAD POSITION")
         else:
