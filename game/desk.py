@@ -1,7 +1,10 @@
 import logging
 import os
+import random
 
+from copy import copy
 from typing import Union
+from threading import Thread
 
 try:
     from game.units import *
@@ -14,6 +17,7 @@ class Desk(object):
         logging.info("Desk created")
         self.desk = self.get_clear_desk()
         self.all = ["a", "b", "c", "d", "e", "f", "g", "h"]
+        self.team_spawns = {1: (0, 0), 2: (7, 0), 3: (0, 7), 4: (7, 7)}
 
     def get_figure(self, position):
         return self.desk[position[0]][position[1]]
@@ -24,10 +28,91 @@ class Desk(object):
         return 8 - int(position[0]), self.all.index(position[1])
 
     def check_self_figure(self, position, team):
+        logging.info(position)
         if not isinstance(self.get_figure(position), Empty):
             if team == self.desk[position[0]][position[1]].team:
                 return True
         return False
+
+    @staticmethod
+    def get_possible_moves(xchip: int, ychip: int, direction: str, distance: int, result=None):
+        r"""
+
+        :param result:
+            result
+        :param xchip:
+            x coordinate (max = 7)
+        :param ychip:
+            x coordinate (max = 7)
+        :param direction:
+            direction of calculation:
+            up, down, left, right
+        :param distance:
+            travel distance (max = 6)
+        :return: list
+        """
+        if result is None:
+            result = []
+        possible_moves = []
+
+        if (xchip > 7 or xchip < 0) or (ychip > 7 or ychip < 0):
+            return []
+        if direction == "down":
+            i = 0
+            while ychip != ychip - distance and 0 <= ychip <= 7:
+                if 0 <= xchip - (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip - (distance - i), ychip))
+                if 0 <= xchip + (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip + (distance - i), ychip))
+                i += 1
+                ychip += 1
+        elif direction == "up":
+            i = 0
+            while ychip != ychip + distance and 0 <= ychip <= 7:
+                if 0 <= xchip - (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip - (distance - i), ychip))
+                if 0 <= xchip + (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip + (distance - i), ychip))
+                i += 1
+                ychip -= 1
+        elif direction == "left":
+            i = 0
+            while xchip != xchip - distance and 0 <= xchip <= 7:
+                if 0 <= ychip - (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip, ychip - (distance - i)))
+                if 0 <= ychip + (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip, ychip + (distance - i)))
+                i += 1
+                xchip += 1
+        else:
+            i = 0
+            while xchip != xchip + distance and 0 <= xchip <= 7:
+                if 0 <= ychip - (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip, ychip - (distance - i)))
+                if 0 <= ychip + (distance - i) <= 7 and distance - i >= 0:
+                    possible_moves.append((xchip, ychip + (distance - i)))
+                i += 1
+                xchip -= 1
+
+        result.extend(possible_moves)
+
+    def get_all_possible_moves(self, xchip: int, ychip: int, distance: int):
+        all_moves = []
+        t1 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "right", distance, all_moves))
+        t2 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "down", distance, all_moves))
+        t3 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "up", distance, all_moves))
+        t4 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "left", distance, all_moves))
+
+        t1.start()
+        t2.start()
+        t3.start()
+        t4.start()
+
+        t1.join()
+        t1.join()
+        t1.join()
+        t1.join()
+        return all_moves
 
     @staticmethod
     def get_clear_desk():
@@ -35,17 +120,27 @@ class Desk(object):
         for y in range(8):
             desk_line = []
             for x in range(8):
-                desk_line.append(Empty(y, x))
+                desk_line.append(Empty())
             desk.append(desk_line)
 
-        desk[0][0] = GameChip(0, 0, 1)
-        desk[0][-1] = GameChip(0, 0, 2)
-        desk[-1][0] = GameChip(0, 0, 3)
-        desk[-1][-1] = GameChip(0, 0, 4)
+        desk[0][0] = GameChip(1)
+        desk[0][-1] = GameChip(2)
+        desk[-1][0] = GameChip(3)
+        desk[-1][-1] = GameChip(4)
 
         logging.info("Board cleared")
 
         return desk
+
+    def do_move(self, from_position, to_position):
+        figure = self.get_figure(from_position)
+        self.desk[to_position[0]][to_position[1]] = copy(figure)
+        if from_position != self.team_spawns[figure.team]:
+            self.desk[from_position[0]][from_position[1]] = Empty()
+
+    @staticmethod
+    def reverse_position(position: tuple):
+        return tuple(reversed(position))
 
     def show(self):
         print("-------------------------------------")
@@ -57,37 +152,3 @@ class Desk(object):
 
         print("-------------------------------------")
         print(*["\ta", "b", "c", "d", "e", "f", "g", "h"], sep="\t")
-
-
-if __name__ == "__main__":
-    FORMAT = '[%(asctime)s] [%(levelname)s]: %(process)d %(name)s %(message)s'
-    DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
-    LOG_PATH = "logs.log"
-
-    logging.basicConfig(
-        format=FORMAT,
-        datefmt=DATE_FORMAT,
-        level=logging.INFO
-    )
-    handler = logging.FileHandler("../" + LOG_PATH, mode='+a')
-    handler.setFormatter(logging.Formatter(FORMAT))
-
-    logging.getLogger().addHandler(handler)
-
-    _desk = Desk()
-
-    _number_of_the_player = 1
-
-    while True:
-        os.system("clear")
-
-        _desk.show()
-        _input = input("input: ")
-        if _input == "exit":
-            logging.info("Exit")
-            break
-        _pos_from, _pos_to = _input.split()
-        _pos_from = _desk.refactor_position(_pos_from)
-        _pos_to = _desk.refactor_position(_pos_to)
-        if _desk.check_self_figure(_pos_from, _number_of_the_player):
-            pass
