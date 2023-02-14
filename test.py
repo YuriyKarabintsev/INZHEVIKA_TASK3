@@ -1,8 +1,8 @@
 import threading
 import time
+import game.build.all_possible_moves as cp
 
 from functools import wraps
-
 
 def timeit(func):
     @wraps(func)
@@ -96,6 +96,14 @@ def linear_function(x, y):
     get_possible_moves(xchip=x, ychip=y, direction="left", distance=6, result=result)
     return result
 
+@timeit
+def cpp_linear_function(x, y):
+    result = []
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=1, distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=2, distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=3, distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=4, distance=6, results=result)
+    return result
 
 @timeit
 def threading_function(x, y):
@@ -118,10 +126,10 @@ def threading_function(x, y):
 
 
 if __name__ == "__main__":
-    print(threading_function(0, 0)[0])
-    # print(threading_function(3, 3))
+    print(linear_function(0, 0)[0])
+    print(cpp_linear_function(0, 0)[0])
 
-    for x, y in threading_function(_x, _y)[1]:
+    for x, y in cpp_linear_function(_x, _y)[1]:
         desk[y][x] = 1
 
     print("-------------------------------------")
