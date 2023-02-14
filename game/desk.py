@@ -2,8 +2,8 @@ import logging
 
 from copy import copy
 from typing import Union, List, Tuple
-from threading import Thread
 
+import build.all_possible_moves as moves
 try:
     from game.units import *
 except ModuleNotFoundError:
@@ -93,24 +93,14 @@ class Desk(object):
                 xchip -= 1
 
         result.extend(possible_moves)
-
-    def get_all_possible_moves(self, xchip: int, ychip: int, distance: int) -> list:
-        all_moves = []
-        t1 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "right", distance, all_moves))
-        t2 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "down", distance, all_moves))
-        t3 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "up", distance, all_moves))
-        t4 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "left", distance, all_moves))
-
-        t1.start()
-        t2.start()
-        t3.start()
-        t4.start()
-
-        t1.join()
-        t1.join()
-        t1.join()
-        t1.join()
-        return all_moves
+    @staticmethod
+    def get_all_possible_moves(xchip: int, ychip: int, distance: int) -> list:
+        result = []
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="right", distance=distance, results=result)
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="down", distance=distance, results=result)
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="up", distance=distance, results=result)
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="left", distance=distance, results=result)
+        return result
 
     @staticmethod
     def get_clear_desk() -> List[List[Union[Empty, GameChip]]]:

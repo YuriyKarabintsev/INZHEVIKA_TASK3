@@ -99,10 +99,10 @@ def linear_function(x, y):
 @timeit
 def cpp_linear_function(x, y):
     result = []
-    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=1, distance=6, results=result)
-    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=2, distance=6, results=result)
-    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=3, distance=6, results=result)
-    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction=4, distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="right", distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="down", distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="up", distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="left", distance=6, results=result)
     return result
 
 @timeit

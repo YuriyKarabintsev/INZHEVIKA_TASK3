@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-void get_possible_moves(int xchip, int ychip, int direction,
+void get_possible_moves(int xchip, int ychip, string direction,
     int distance, vector<pair<int, int> >& result) {
 
     if (result.empty())
@@ -14,7 +14,7 @@ void get_possible_moves(int xchip, int ychip, int direction,
         result.insert(result.end(), possible_moves.begin(), possible_moves.end());
     }
 
-    if (direction == 2) {
+    if (direction == "down") {
         int i = 0;
         while (ychip != ychip - distance && 0 <= ychip && ychip <= 7) {
             if (0 <= xchip - (distance - i) && xchip - (distance - i) <= 7 && distance - i >= 0) {
@@ -28,7 +28,7 @@ void get_possible_moves(int xchip, int ychip, int direction,
             ychip++;
         }
     }
-    else if (direction == 3) {
+    else if (direction == "up") {
         int i = 0;
         while (ychip != ychip + distance && 0 <= ychip && ychip <= 7) {
             if (0 <= xchip - (distance - i) && xchip - (distance - i) <= 7 && distance - i >= 0) {
@@ -42,7 +42,7 @@ void get_possible_moves(int xchip, int ychip, int direction,
             ychip--;
         }
     }
-    else if (direction == 4) {
+    else if (direction == "left") {
         int i = 0;
         while (xchip != xchip - distance && 0 <= xchip && xchip <= 7) {
             if (0 <= ychip - (distance - i) && ychip - (distance - i) <= 7 && distance - i >= 0) {
@@ -78,7 +78,7 @@ int main() {
 
     vector<pair<int, int> > result = vector<pair<int, int> >();
 
-    get_possible_moves(0, 0, 1, 1, result);
+    get_possible_moves(0, 0, "down", 1, result);
 
     for (size_t i = 0; i < result.size(); i++)
     {
