@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-void get_possible_moves(int xchip, int ychip, string direction,
+void get_possible_moves(int xchip, int ychip, const string& direction,
     int distance, vector<pair<int, int> >& result) {
 
     if (result.empty())

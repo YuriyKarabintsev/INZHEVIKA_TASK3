@@ -1310,7 +1310,7 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'libcpp.string' */
 
 /* Module declarations from 'all_possible_moves' */
-static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int, int, std::string, int, std::vector<std::pair<int,int> >  &); /*proto*/
+static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int, int, std::string const &, int, std::vector<std::pair<int,int> >  &); /*proto*/
 static std::string __pyx_convert_string_from_py_std__in_string(PyObject *); /*proto*/
 static PyObject *__pyx_convert_pair_to_py_int____int(std::pair<int,int>  const &); /*proto*/
 static PyObject *__pyx_convert_vector_to_py_std_3a__3a_pair_3c_int_2c_int_3e___(const std::vector<std::pair<int,int> >  &); /*proto*/
@@ -1363,14 +1363,14 @@ static PyObject *__pyx_codeobj__2;
 /* Late includes */
 
 /* "all_possible_moves.pyx":8
- *     void get_possible_moves(int xchip, int ychip, string direction, int distance, vector[pair[int, int]]& result) ;
+ *     void get_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result) ;
  * 
- * cdef get_cpp_possible_moves(int xchip, int ychip, string direction, int distance, vector[pair[int, int]]& result):             # <<<<<<<<<<<<<<
+ * cdef get_cpp_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result):             # <<<<<<<<<<<<<<
  *     return get_possible_moves(xchip, ychip, direction, distance, result)
  * 
  */
 
-static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int __pyx_v_xchip, int __pyx_v_ychip, std::string __pyx_v_direction, int __pyx_v_distance, std::vector<std::pair<int,int> >  &__pyx_v_result) {
+static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int __pyx_v_xchip, int __pyx_v_ychip, std::string const &__pyx_v_direction, int __pyx_v_distance, std::vector<std::pair<int,int> >  &__pyx_v_result) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1381,7 +1381,7 @@ static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int __pyx_v
 
   /* "all_possible_moves.pyx":9
  * 
- * cdef get_cpp_possible_moves(int xchip, int ychip, string direction, int distance, vector[pair[int, int]]& result):
+ * cdef get_cpp_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result):
  *     return get_possible_moves(xchip, ychip, direction, distance, result)             # <<<<<<<<<<<<<<
  * 
  * def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):
@@ -1394,9 +1394,9 @@ static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int __pyx_v
   goto __pyx_L0;
 
   /* "all_possible_moves.pyx":8
- *     void get_possible_moves(int xchip, int ychip, string direction, int distance, vector[pair[int, int]]& result) ;
+ *     void get_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result) ;
  * 
- * cdef get_cpp_possible_moves(int xchip, int ychip, string direction, int distance, vector[pair[int, int]]& result):             # <<<<<<<<<<<<<<
+ * cdef get_cpp_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result):             # <<<<<<<<<<<<<<
  *     return get_possible_moves(xchip, ychip, direction, distance, result)
  * 
  */
