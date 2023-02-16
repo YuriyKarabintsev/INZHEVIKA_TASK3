@@ -1,11 +1,9 @@
 import logging
-import os
-import random
 
 from copy import copy
-from typing import Union
-from threading import Thread
+from typing import Union, List, Tuple
 
+import build.all_possible_moves as moves
 try:
     from game.units import *
 except ModuleNotFoundError:
@@ -19,15 +17,15 @@ class Desk(object):
         self.all = ["a", "b", "c", "d", "e", "f", "g", "h"]
         self.team_spawns = {1: (0, 0), 2: (7, 0), 3: (0, 7), 4: (7, 7)}
 
-    def get_figure(self, position):
+    def get_figure(self, position) -> Union[Empty, GameChip]:
         return self.desk[position[0]][position[1]]
 
-    def refactor_position(self, position: str) -> tuple[int, int]:
+    def refactor_position(self, position: str) -> Tuple[int, ...]:
         if position[0] in self.all:
             return 8 - int(position[1]), self.all.index(position[0])
         return 8 - int(position[0]), self.all.index(position[1])
 
-    def check_self_figure(self, position, team):
+    def check_self_figure(self, position: Tuple[int, ...], team: int) -> bool:
         logging.info(position)
         if not isinstance(self.get_figure(position), Empty):
             if team == self.desk[position[0]][position[1]].team:
@@ -95,28 +93,18 @@ class Desk(object):
                 xchip -= 1
 
         result.extend(possible_moves)
-
-    def get_all_possible_moves(self, xchip: int, ychip: int, distance: int):
-        all_moves = []
-        t1 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "right", distance, all_moves))
-        t2 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "down", distance, all_moves))
-        t3 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "up", distance, all_moves))
-        t4 = Thread(target=self.get_possible_moves, args=(xchip, ychip, "left", distance, all_moves))
-
-        t1.start()
-        t2.start()
-        t3.start()
-        t4.start()
-
-        t1.join()
-        t1.join()
-        t1.join()
-        t1.join()
-        return all_moves
+    @staticmethod
+    def get_all_possible_moves(xchip: int, ychip: int, distance: int) -> list:
+        result = []
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="right", distance=distance, results=result)
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="down", distance=distance, results=result)
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="up", distance=distance, results=result)
+        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="left", distance=distance, results=result)
+        return result
 
     @staticmethod
-    def get_clear_desk():
-        desk: list[list[Union[Empty, GameChip]]] = []
+    def get_clear_desk() -> List[List[Union[Empty, GameChip]]]:
+        desk: List[List[Union[Empty, GameChip]]] = []
         for y in range(8):
             desk_line = []
             for x in range(8):
@@ -132,17 +120,17 @@ class Desk(object):
 
         return desk
 
-    def do_move(self, from_position, to_position):
+    def do_move(self, from_position: Tuple[int, ...], to_position: Tuple[int, ...]) -> None:
         figure = self.get_figure(from_position)
         self.desk[to_position[0]][to_position[1]] = copy(figure)
         if from_position != self.team_spawns[figure.team]:
             self.desk[from_position[0]][from_position[1]] = Empty()
 
     @staticmethod
-    def reverse_position(position: tuple):
+    def reverse_position(position: Tuple[int, ...]) -> tuple[int, ...]:
         return tuple(reversed(position))
 
-    def show(self):
+    def show(self) -> None:
         print("-------------------------------------")
         for x in range(len(self.desk)):
             print(f"{7 - x + 1}|\t", end="")

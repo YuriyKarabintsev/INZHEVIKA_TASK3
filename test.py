@@ -1,8 +1,8 @@
 import threading
 import time
+import game.build.all_possible_moves as cp
 
 from functools import wraps
-
 
 def timeit(func):
     @wraps(func)
@@ -96,32 +96,40 @@ def linear_function(x, y):
     get_possible_moves(xchip=x, ychip=y, direction="left", distance=6, result=result)
     return result
 
+@timeit
+def cpp_linear_function(x, y):
+    result = []
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="right", distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="down", distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="up", distance=6, results=result)
+    cp.cpp_get_possible_moves(xchip=x, ychip=y, direction="left", distance=6, results=result)
+    return result
 
 @timeit
 def threading_function(x, y):
     result = []
-    t1 = threading.Thread(target=get_possible_moves, args=(x, y, "right", 6, result))
-    t2 = threading.Thread(target=get_possible_moves, args=(x, y, "down", 6, result))
-    t3 = threading.Thread(target=get_possible_moves, args=(x, y, "up", 6, result))
-    t4 = threading.Thread(target=get_possible_moves, args=(x, y, "left", 6, result))
+    # t1 = threading.Thread(target=get_possible_moves, args=(x, y, "right", 6, result))
+    t2 = threading.Thread(target=get_possible_moves, args=(x, y, "down", 1, result))
+    # t3 = threading.Thread(target=get_possible_moves, args=(x, y, "up", 6, result))
+    # t4 = threading.Thread(target=get_possible_moves, args=(x, y, "left", 6, result))
 
-    t1.start()
+    # t1.start()
     t2.start()
-    t3.start()
-    t4.start()
+    # t3.start()
+    # t4.start()
 
-    t1.join()
-    t1.join()
-    t1.join()
-    t1.join()
+    # t1.join()
+    t2.join()
+    # t3.join()
+    # t4.join()
     return result
 
 
 if __name__ == "__main__":
-    print(threading_function(3, 3)[0])
-    # print(threading_function(3, 3))
+    print(linear_function(0, 0)[0])
+    print(cpp_linear_function(0, 0)[0])
 
-    for x, y in threading_function(_x, _y)[1]:
+    for x, y in cpp_linear_function(_x, _y)[1]:
         desk[y][x] = 1
 
     print("-------------------------------------")
