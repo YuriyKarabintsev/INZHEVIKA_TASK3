@@ -2,8 +2,8 @@ import logging
 
 from copy import copy
 from typing import Union, List, Tuple
+import game.build
 
-import build.all_possible_moves as moves
 try:
     from game.units import *
 except ModuleNotFoundError:
@@ -96,10 +96,10 @@ class Desk(object):
     @staticmethod
     def get_all_possible_moves(xchip: int, ychip: int, distance: int) -> list:
         result = []
-        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="right", distance=distance, results=result)
-        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="down", distance=distance, results=result)
-        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="up", distance=distance, results=result)
-        moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="left", distance=distance, results=result)
+        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="right", distance=distance, results=result)
+        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="down", distance=distance, results=result)
+        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="up", distance=distance, results=result)
+        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="left", distance=distance, results=result)
         return result
 
     @staticmethod

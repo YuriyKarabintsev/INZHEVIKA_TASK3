@@ -2,7 +2,7 @@ import logging
 import os
 import random
 
-from desk import Desk
+from game.desk import Desk
 
 
 if __name__ == "__main__":
