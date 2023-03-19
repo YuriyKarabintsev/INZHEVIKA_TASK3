@@ -1,5 +1,5 @@
 # INZHEVIKA_TASK3
 
-with Cubigator
+with Cubigator 
 
 перед использованием нужно запустить game/make.sh (или использовать Docker)
