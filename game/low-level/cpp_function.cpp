@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
 using namespace std;
 
 void get_possible_moves(int xchip, int ychip, const string& direction,
@@ -81,8 +80,8 @@ int main() {
 
     get_possible_moves(0, 0, "down", 1, result);
 
-    for (auto & i : result)
+    for (size_t i = 0; i < result.size(); i++)
     {
-        cout << i.first << " - " << i.second << endl;
+        cout << result[i].first << " - " << result[i].second << endl;
     }
 }
