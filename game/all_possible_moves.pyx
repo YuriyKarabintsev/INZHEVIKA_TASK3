@@ -3,9 +3,15 @@ from libcpp.utility cimport pair
 from libcpp.string cimport string
 
 cdef extern from "low-level/cpp_function.cpp" nogil:
-    void get_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result) ;
+    void get_possible_moves(
+        int xchip, int ychip, const string& direction,
+        int distance, vector[pair[int, int]]& result
+    );
 
-cdef get_cpp_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result):
+cdef get_cpp_possible_moves(
+        int xchip, int ychip, const string& direction,
+        int distance, vector[pair[int, int]]& result
+):
     return get_possible_moves(xchip, ychip, direction, distance, result)
 
 def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):
