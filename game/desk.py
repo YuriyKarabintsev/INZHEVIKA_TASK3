@@ -33,7 +33,7 @@ class Desk(object):
         return False
 
     @staticmethod
-    def get_possible_moves(xchip: int, ychip: int, direction: str, distance: int, result=None):
+    def get_possible_moves(xchip: int, ychip: int, direction: str, distance: int, results=None):
         r"""
 
         :param result:
@@ -49,8 +49,8 @@ class Desk(object):
             travel distance (max = 6)
         :return: list
         """
-        if result is None:
-            result = []
+        if results is None:
+            results = []
         possible_moves = []
 
         if (xchip > 7 or xchip < 0) or (ychip > 7 or ychip < 0):
@@ -92,14 +92,13 @@ class Desk(object):
                 i += 1
                 xchip -= 1
 
-        result.extend(possible_moves)
-    @staticmethod
-    def get_all_possible_moves(xchip: int, ychip: int, distance: int) -> list:
+        results.extend(possible_moves)
+    def get_all_possible_moves(self, xchip: int, ychip: int, distance: int) -> list:
         result = []
-        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="right", distance=distance, results=result)
-        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="down", distance=distance, results=result)
-        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="up", distance=distance, results=result)
-        game.build.all_possible_moves.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="left", distance=distance, results=result)
+        game.build.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="right", distance=distance, results=result)
+        game.build.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="down", distance=distance, results=result)
+        game.build.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="up", distance=distance, results=result)
+        game.build.cpp_get_possible_moves(xchip=xchip, ychip=ychip, direction="left", distance=distance, results=result)
         return result
 
     @staticmethod

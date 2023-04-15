@@ -1362,12 +1362,12 @@ static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 /* Late includes */
 
-/* "all_possible_moves.pyx":8
- *     void get_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result) ;
+/* "all_possible_moves.pyx":11
+ *     );
  * 
- * cdef get_cpp_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result):             # <<<<<<<<<<<<<<
- *     return get_possible_moves(xchip, ychip, direction, distance, result)
- * 
+ * cdef get_cpp_possible_moves(             # <<<<<<<<<<<<<<
+ *         int xchip, int ychip, const string& direction,
+ *         int distance, vector[pair[int, int]]& result
  */
 
 static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int __pyx_v_xchip, int __pyx_v_ychip, std::string const &__pyx_v_direction, int __pyx_v_distance, std::vector<std::pair<int,int> >  &__pyx_v_result) {
@@ -1379,26 +1379,26 @@ static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int __pyx_v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_cpp_possible_moves", 0);
 
-  /* "all_possible_moves.pyx":9
- * 
- * cdef get_cpp_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result):
+  /* "all_possible_moves.pyx":15
+ *         int distance, vector[pair[int, int]]& result
+ * ):
  *     return get_possible_moves(xchip, ychip, direction, distance, result)             # <<<<<<<<<<<<<<
  * 
  * def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_void_to_None(get_possible_moves(__pyx_v_xchip, __pyx_v_ychip, __pyx_v_direction, __pyx_v_distance, __pyx_v_result)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(get_possible_moves(__pyx_v_xchip, __pyx_v_ychip, __pyx_v_direction, __pyx_v_distance, __pyx_v_result)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "all_possible_moves.pyx":8
- *     void get_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result) ;
+  /* "all_possible_moves.pyx":11
+ *     );
  * 
- * cdef get_cpp_possible_moves(int xchip, int ychip, const string& direction, int distance, vector[pair[int, int]]& result):             # <<<<<<<<<<<<<<
- *     return get_possible_moves(xchip, ychip, direction, distance, result)
- * 
+ * cdef get_cpp_possible_moves(             # <<<<<<<<<<<<<<
+ *         int xchip, int ychip, const string& direction,
+ *         int distance, vector[pair[int, int]]& result
  */
 
   /* function exit code */
@@ -1412,7 +1412,7 @@ static PyObject *__pyx_f_18all_possible_moves_get_cpp_possible_moves(int __pyx_v
   return __pyx_r;
 }
 
-/* "all_possible_moves.pyx":11
+/* "all_possible_moves.pyx":17
  *     return get_possible_moves(xchip, ychip, direction, distance, result)
  * 
  * def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):             # <<<<<<<<<<<<<<
@@ -1465,19 +1465,19 @@ static PyObject *__pyx_pw_18all_possible_moves_1cpp_get_possible_moves(PyObject 
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ychip)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, 1); __PYX_ERR(0, 11, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, 1); __PYX_ERR(0, 17, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_direction)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, 2); __PYX_ERR(0, 11, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, 2); __PYX_ERR(0, 17, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_distance)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, 3); __PYX_ERR(0, 11, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, 3); __PYX_ERR(0, 17, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
@@ -1487,7 +1487,7 @@ static PyObject *__pyx_pw_18all_possible_moves_1cpp_get_possible_moves(PyObject 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cpp_get_possible_moves") < 0)) __PYX_ERR(0, 11, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cpp_get_possible_moves") < 0)) __PYX_ERR(0, 17, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -1501,21 +1501,21 @@ static PyObject *__pyx_pw_18all_possible_moves_1cpp_get_possible_moves(PyObject 
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_xchip = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_xchip == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_ychip = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_ychip == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+    __pyx_v_xchip = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_xchip == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
+    __pyx_v_ychip = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_ychip == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
     __pyx_v_direction = ((PyObject*)values[2]);
-    __pyx_v_distance = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_distance == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+    __pyx_v_distance = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_distance == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
     __pyx_v_results = values[4];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 11, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cpp_get_possible_moves", 0, 4, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 17, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("all_possible_moves.cpp_get_possible_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), (&PyString_Type), 1, "direction", 1))) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), (&PyString_Type), 1, "direction", 1))) __PYX_ERR(0, 17, __pyx_L1_error)
   __pyx_r = __pyx_pf_18all_possible_moves_cpp_get_possible_moves(__pyx_self, __pyx_v_xchip, __pyx_v_ychip, __pyx_v_direction, __pyx_v_distance, __pyx_v_results);
 
   /* function exit code */
@@ -1544,32 +1544,32 @@ static PyObject *__pyx_pf_18all_possible_moves_cpp_get_possible_moves(CYTHON_UNU
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cpp_get_possible_moves", 0);
 
-  /* "all_possible_moves.pyx":12
+  /* "all_possible_moves.pyx":18
  * 
  * def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):
  *     cdef bytes string_ = direction.encode("utf-8")             # <<<<<<<<<<<<<<
  *     cdef vector[pair[int, int]] result;
  * 
  */
-  __pyx_t_1 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyString_Type_encode, __pyx_v_direction, __pyx_kp_s_utf_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyString_Type_encode, __pyx_v_direction, __pyx_kp_s_utf_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 18, __pyx_L1_error)
   __pyx_v_string_ = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "all_possible_moves.pyx":15
+  /* "all_possible_moves.pyx":21
  *     cdef vector[pair[int, int]] result;
  * 
  *     get_cpp_possible_moves(xchip, ychip, string_, distance, result)             # <<<<<<<<<<<<<<
  * 
  *     if results is not None:
  */
-  __pyx_t_2 = __pyx_convert_string_from_py_std__in_string(__pyx_v_string_); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 15, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_18all_possible_moves_get_cpp_possible_moves(__pyx_v_xchip, __pyx_v_ychip, __pyx_t_2, __pyx_v_distance, __pyx_v_result); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_string_from_py_std__in_string(__pyx_v_string_); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_18all_possible_moves_get_cpp_possible_moves(__pyx_v_xchip, __pyx_v_ychip, __pyx_t_2, __pyx_v_distance, __pyx_v_result); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "all_possible_moves.pyx":17
+  /* "all_possible_moves.pyx":23
  *     get_cpp_possible_moves(xchip, ychip, string_, distance, result)
  * 
  *     if results is not None:             # <<<<<<<<<<<<<<
@@ -1579,14 +1579,14 @@ static PyObject *__pyx_pf_18all_possible_moves_cpp_get_possible_moves(CYTHON_UNU
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
 
-    /* "all_possible_moves.pyx":18
+    /* "all_possible_moves.pyx":24
  * 
  *     if results is not None:
  *         results.extend(result)             # <<<<<<<<<<<<<<
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_results, __pyx_n_s_extend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_results, __pyx_n_s_extend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 24, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __pyx_convert_vector_to_py_std_3a__3a_pair_3c_int_2c_int_3e___(__pyx_v_result); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 18, __pyx_L1_error)
+    __pyx_t_6 = __pyx_convert_vector_to_py_std_3a__3a_pair_3c_int_2c_int_3e___(__pyx_v_result); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 24, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -1601,12 +1601,12 @@ static PyObject *__pyx_pf_18all_possible_moves_cpp_get_possible_moves(CYTHON_UNU
     __pyx_t_1 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_7, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "all_possible_moves.pyx":17
+    /* "all_possible_moves.pyx":23
  *     get_cpp_possible_moves(xchip, ychip, string_, distance, result)
  * 
  *     if results is not None:             # <<<<<<<<<<<<<<
@@ -1614,7 +1614,7 @@ static PyObject *__pyx_pf_18all_possible_moves_cpp_get_possible_moves(CYTHON_UNU
  */
   }
 
-  /* "all_possible_moves.pyx":11
+  /* "all_possible_moves.pyx":17
  *     return get_possible_moves(xchip, ychip, direction, distance, result)
  * 
  * def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):             # <<<<<<<<<<<<<<
@@ -1910,17 +1910,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "all_possible_moves.pyx":11
+  /* "all_possible_moves.pyx":17
  *     return get_possible_moves(xchip, ychip, direction, distance, result)
  * 
  * def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):             # <<<<<<<<<<<<<<
  *     cdef bytes string_ = direction.encode("utf-8")
  *     cdef vector[pair[int, int]] result;
  */
-  __pyx_tuple_ = PyTuple_Pack(7, __pyx_n_s_xchip, __pyx_n_s_ychip, __pyx_n_s_direction, __pyx_n_s_distance, __pyx_n_s_results, __pyx_n_s_string, __pyx_n_s_result); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(7, __pyx_n_s_xchip, __pyx_n_s_ychip, __pyx_n_s_direction, __pyx_n_s_distance, __pyx_n_s_results, __pyx_n_s_string, __pyx_n_s_result); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_all_possible_moves_pyx, __pyx_n_s_cpp_get_possible_moves, 11, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_all_possible_moves_pyx, __pyx_n_s_cpp_get_possible_moves, 17, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -2200,16 +2200,16 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "all_possible_moves.pyx":11
+  /* "all_possible_moves.pyx":17
  *     return get_possible_moves(xchip, ychip, direction, distance, result)
  * 
  * def cpp_get_possible_moves(int xchip, int ychip, str direction, int distance, results=None):             # <<<<<<<<<<<<<<
  *     cdef bytes string_ = direction.encode("utf-8")
  *     cdef vector[pair[int, int]] result;
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18all_possible_moves_1cpp_get_possible_moves, NULL, __pyx_n_s_all_possible_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18all_possible_moves_1cpp_get_possible_moves, NULL, __pyx_n_s_all_possible_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cpp_get_possible_moves, __pyx_t_1) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cpp_get_possible_moves, __pyx_t_1) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "all_possible_moves.pyx":1
