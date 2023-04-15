@@ -2,8 +2,8 @@ import logging
 
 from copy import copy
 from typing import Union, List, Tuple
-import game.build
 
+import build.all_possible_moves as moves
 try:
     from game.units import *
 except ModuleNotFoundError:
